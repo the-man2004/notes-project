@@ -1,0 +1,63 @@
+@import "./main.css";
+
+/* .navbar {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100vw;
+  height: 100px;
+  padding: 0 20px;
+} */
+.navbar {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  justify-items: space-between;
+
+  width: 100vw;
+  height: 100px;
+  padding: 0 20px;
+}
+
+.note-selector {
+  font-size: 1.3rem;
+}
+
+.search-bar {
+  width: 50vw;
+  height: 36px;
+  padding: 0 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  justify-self: center;
+
+  border-radius: 18px;
+}
+
+.search-bar i {
+  position: relative;
+  bottom: -2px;
+}
+
+input {
+  background-color: var(--gray);
+  outline: none;
+  border: 1px solid var(--gray);
+
+  width: calc(50vw - 75px);
+}
+input::placeholder {
+  color: var(--light-gray);
+}
+
+.menu-dots {
+  font-size: 1.4rem;
+  display: grid;
+  justify-items: end;
+}
