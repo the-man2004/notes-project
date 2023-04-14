@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/noteContainer.css" />
     <script defer src="main.js"></script>
 
     <link
@@ -26,13 +27,107 @@
 
       <div class="search-bar gray">
         <i class="fi fi-rr-search light-gray"></i>
-        <input class="light-gray" type="text" placeholder="Search notes" />
-        <i class="fi fi-rr-cross light-gray"></i>
+        <input
+          class="light-gray search"
+          type="text"
+          placeholder="Search notes"
+        />
+        <i class="fi fi-rr-cross light-gray invisible cancel-btn"></i>
       </div>
 
       <div class="menu orange">
-        <i class="fi fi-rr-menu-burger menu-dots"></i>
+        <i class="fi fi-rr-menu-burger burger-menu"></i>
+      </div>
+
+      <!-- popups -->
+
+      <!-- burger popups -->
+      <div class="burger-popup no-display">
+        <ul>
+          <li id="grid-view">Grid view</li>
+          <hr />
+          <li id="delete-note">Delete items</li>
+          <hr />
+          <li id="settings">Settings</li>
+        </ul>
+      </div>
+
+      <!-- note selector -->
+      <div class="note-popup no-display">
+        <ul>
+          <li>
+            <i class="fi fi-rr-memo note-icons"></i>
+            <div class="notes">
+              <p class="all-notes note-link">All notes</p>
+              <p>0</p>
+            </div>
+          </li>
+          <hr />
+          <li>
+            <i class="fi fi-rr-star note-icons"></i>
+            <div class="notes">
+              <p class="favorite-notes note-link">My favorites</p>
+              <p>0</p>
+            </div>
+          </li>
+          <hr />
+          <li>
+            <i class="fi fi-rr-trash note-icons"></i>
+            <div class="notes">
+              <p class="deleted-notes note-link">Recently deleted</p>
+              <p>0</p>
+            </div>
+          </li>
+          <div class="divider"></div>
+          <li>
+            <i class="fi fi-rr-document-signed note-icons"></i>
+            <div class="notes">
+              <p class="travel-notes note-link">Travel</p>
+              <p>0</p>
+            </div>
+          </li>
+          <hr />
+          <li>
+            <i class="fi fi-rr-document-signed note-icons"></i>
+            <div class="notes">
+              <p class="travel-notes note-link">Travel</p>
+              <p>0</p>
+            </div>
+          </li>
+          <hr />
+          <li>
+            <i class="fi fi-rr-document-signed note-icons"></i>
+            <div class="notes">
+              <p class="travel-notes note-link">Travel</p>
+              <p>0</p>
+            </div>
+          </li>
+          <hr />
+          <li>
+            <i class="fi fi-rr-document-signed note-icons"></i>
+            <div class="notes">
+              <p class="travel-notes note-link">Travel</p>
+              <p>0</p>
+            </div>
+          </li>
+        </ul>
       </div>
     </nav>
+
+    <!-- main section -->
+    <main>
+      <!-- overlay -->
+      <div class="overlay no-display"></div>
+
+      <!-- add note popup -->
+      <!-- <div class="form-container">
+        <form action="">
+
+        </form>
+      </div> -->
+
+      <!-- add note btn -->
+      <i class="fi fi-rr-add add-note-btn"></i>
+    </main>
   </body>
 </html>
