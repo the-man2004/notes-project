@@ -1,17 +1,8 @@
 @import "./main.css";
 
-/* .navbar {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  width: 100vw;
-  height: 100px;
-  padding: 0 20px;
-} */
+/* navbar styles */
 .navbar {
-  position: absolute;
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
@@ -22,10 +13,15 @@
   padding: 0 20px;
 }
 
+/* note selector */
 .note-selector {
   font-size: 1.3rem;
 }
+.note-selector:hover {
+  cursor: pointer;
+}
 
+/* search bar */
 .search-bar {
   width: 50vw;
   height: 36px;
@@ -56,8 +52,82 @@ input::placeholder {
   color: var(--light-gray);
 }
 
-.menu-dots {
+/* burger menu */
+.burger-menu {
   font-size: 1.4rem;
   display: grid;
   justify-items: end;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+/* burger popup */
+.burger-popup {
+  position: absolute;
+  background-color: var(--gray);
+  color: var(--light-gray);
+
+  top: 100px;
+  right: 20px;
+  padding: 20px;
+  width: 150px;
+
+  border-radius: 10px;
+}
+.burger-popup li {
+  list-style: none;
+}
+.burger-popup li:hover {
+  cursor: pointer;
+}
+.burger-popup hr {
+  margin: 10px 0;
+  border: 1px solid var(--light-gray);
+}
+
+.note-popup {
+  position: absolute;
+  background-color: var(--gray);
+  color: var(--light-gray);
+
+  top: 100px;
+  left: 20px;
+  padding: 20px;
+  width: 40vw;
+  min-width: 300px;
+
+  border-radius: 10px;
+}
+.note-popup li {
+  list-style: none;
+}
+.note-popup hr {
+  margin: 15px 0 15px 25px;
+  border: 1px solid var(--light-gray);
+}
+.note-popup li {
+  display: flex;
+}
+
+.note-icons {
+  margin-right: 10px;
+  color: var(--orange);
+}
+.notes {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.note-link:hover {
+  cursor: pointer;
+}
+
+.divider {
+  width: 100%;
+  height: 5px;
+  margin: 15px 0;
+  background-color: var(--light-gray);
 }
