@@ -20,6 +20,11 @@ body {
   opacity: 0;
 }
 
+/* display none */
+.no-display {
+  display: none;
+}
+
 /* color classes */
 .orange {
   color: var(--orange);
