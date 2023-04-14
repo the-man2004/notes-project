@@ -1,0 +1,24 @@
+@import "./main.css";
+
+/* add note btn */
+.add-note-btn {
+  color: var(--orange);
+  font-size: 3rem;
+
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.add-note-btn:hover {
+  cursor: pointer;
+}
+
+/* overlay */
+.overlay {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black);
+  opacity: 0.6;
+}
