@@ -13,6 +13,8 @@
 
 body {
   background-color: var(--black);
+
+  overflow: hidden;
 }
 
 /* make element invisible */
