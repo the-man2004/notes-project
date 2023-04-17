@@ -1,5 +1,11 @@
 @import "./main.css";
 
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* add note btn */
 .add-note-btn {
   color: var(--orange);
@@ -21,4 +27,74 @@
   height: 100vh;
   background-color: var(--black);
   opacity: 0.6;
+}
+
+/* add note form */
+.form-container {
+  width: 50vw;
+
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  background-color: var(--gray);
+  color: var(--light-gray);
+}
+
+.form-container form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  width: 100%;
+}
+
+.form-container p {
+  text-align: center;
+  font-size: 2rem;
+  color: var(--orange);
+
+  margin-top: 15px;
+  width: 100%;
+  max-width: 1000px;
+}
+
+.form-container input,
+textarea {
+  border: 1px solid var(--light-gray);
+  background-color: var(--gray);
+  color: var(--light-gray);
+
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 15px;
+  width: 70%;
+  max-width: 750px;
+
+  outline: none;
+}
+
+.form-container textarea {
+  resize: none;
+  display: block;
+}
+
+.form-container input[type="submit"] {
+  background-color: var(--orange);
+  color: var(--black);
+
+  width: 30%;
+  margin-bottom: 15px;
+}
+
+.form-container input[type="submit"]:hover {
+  cursor: pointer;
+}
+
+/* move up class for form-container */
+.move-up {
+  margin-top: -700px;
 }
