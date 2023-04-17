@@ -41,14 +41,14 @@
   bottom: -2px;
 }
 
-input {
+.search-bar input {
   background-color: var(--gray);
   outline: none;
   border: 1px solid var(--gray);
 
   width: calc(50vw - 75px);
 }
-input::placeholder {
+.search-bar input::placeholder {
   color: var(--light-gray);
 }
 
