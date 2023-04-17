@@ -20,7 +20,7 @@
     <nav class="navbar">
       <div class="note-selection orange">
         <p class="note-selector">
-          All notes <i class="fi fi-rr-caret-down"></i>
+          All notes <i id="carret-icon" class="fi fi-rr-caret-down"></i>
         </p>
         <p>0 notes</p>
       </div>
@@ -116,18 +116,29 @@
 
     <!-- main section -->
     <main>
-      <!-- overlay -->
-      <div class="overlay no-display"></div>
-
       <!-- add note popup -->
-      <!-- <div class="form-container">
-        <form action="">
-
+      <div class="form-container move-up invisible">
+        <p>Add note</p>
+        <form class="form" action="">
+          <input class="note-title" type="text" placeholder="Title" />
+          <textarea
+            class="note-message"
+            name="note"
+            id="note"
+            cols="30"
+            rows="10"
+          ></textarea>
+          <input type="submit" value="Add" />
         </form>
-      </div> -->
+      </div>
+
+      <section class="note-container"></section>
 
       <!-- add note btn -->
       <i class="fi fi-rr-add add-note-btn"></i>
     </main>
+
+    <!-- overlay -->
+    <!-- <div class="overlay no-display"></div> -->
   </body>
 </html>
