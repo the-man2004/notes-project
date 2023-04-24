@@ -7,14 +7,16 @@
 :root {
   --orange: orangered;
   --black: rgb(31, 30, 30);
+  --dark-gray: rgb(46, 46, 46);
   --gray: rgb(58, 58, 58);
   --light-gray: gray;
 }
 
 body {
-  background-color: var(--black);
+  background-color: var(--dark-gray);
 
-  overflow: hidden;
+  height: 100vh;
+  overflow-x: hidden;
 }
 
 /* make element invisible */
