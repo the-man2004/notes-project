@@ -11,7 +11,8 @@ main {
   color: var(--orange);
   font-size: 3rem;
 
-  position: absolute;
+  position: fixed;
+  align-self: flex-end;
   bottom: 20px;
   right: 20px;
 }
@@ -22,7 +23,9 @@ main {
 
 /* overlay */
 .overlay {
-  position: absolute;
+  position: fixed;
+  top: 0px;
+  left: 0px;
   width: 100vw;
   height: 100vh;
   background-color: var(--black);
@@ -32,6 +35,8 @@ main {
 /* add note form */
 .form-container {
   width: 50vw;
+  top: 129px;
+  position: absolute;
 
   border-radius: 10px;
   display: flex;
@@ -97,4 +102,74 @@ textarea {
 /* move up class for form-container */
 .move-up {
   margin-top: -700px;
+}
+
+/* note card styling */
+.note-card {
+  height: auto;
+  width: 50vw;
+  padding: 15px 15px 50px 15px;
+  margin: 30px 0;
+
+  border: 2px solid var(--light-gray);
+  border-radius: 10px;
+
+  background-color: var(--black);
+  color: var(--light-gray);
+}
+.note-card:hover {
+  cursor: pointer;
+}
+
+.trash-icon {
+  position: relative;
+  /* left: calc(50vw - 45px); */
+  left: calc(100% - 15px);
+  bottom: -35px;
+}
+
+.note-name {
+  font-size: 1.3em;
+  font-weight: 600;
+  padding-bottom: 5px;
+}
+
+.note-date {
+  font-size: 0.9em;
+}
+
+/* note container */
+.note-container {
+  min-height: calc(100vh - 100px);
+  /* display: flex;
+  justify-content: center; */
+}
+
+/* arrow-down */
+.arrow-down {
+  padding-top: 8px;
+}
+
+.note {
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+
+  font-size: 1.1em;
+  font-weight: 600;
+
+  word-break: break-all;
+  white-space: normal;
+}
+
+/* no notes */
+.no-notes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  margin-top: 130px;
+  color: var(--light-gray);
+  font-size: 2rem;
 }
