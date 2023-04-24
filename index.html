@@ -26,7 +26,7 @@
       </div>
 
       <div class="search-bar gray">
-        <i class="fi fi-rr-search light-gray"></i>
+        <i class="fi fi-rr-search light-gray search-btn"></i>
         <input
           class="light-gray search"
           type="text"
@@ -40,6 +40,9 @@
       </div>
 
       <!-- popups -->
+
+      <!-- overlay -->
+      <div class="overlay no-display"></div>
 
       <!-- burger popups -->
       <div class="burger-popup no-display">
@@ -90,7 +93,7 @@
           <li>
             <i class="fi fi-rr-document-signed note-icons"></i>
             <div class="notes">
-              <p class="travel-notes note-link">Travel</p>
+              <p class="travel-notes note-link">Personal</p>
               <p>0</p>
             </div>
           </li>
@@ -98,7 +101,7 @@
           <li>
             <i class="fi fi-rr-document-signed note-icons"></i>
             <div class="notes">
-              <p class="travel-notes note-link">Travel</p>
+              <p class="travel-notes note-link">Life</p>
               <p>0</p>
             </div>
           </li>
@@ -106,7 +109,7 @@
           <li>
             <i class="fi fi-rr-document-signed note-icons"></i>
             <div class="notes">
-              <p class="travel-notes note-link">Travel</p>
+              <p class="travel-notes note-link">Work</p>
               <p>0</p>
             </div>
           </li>
@@ -116,6 +119,32 @@
 
     <!-- main section -->
     <main>
+      <!-- note container -->
+      <section class="note-container">
+        <!-- <div class="note-card">
+          <p class="note-name">Things to ask the dude</p>
+          <p class="note-date">15 july 2022</p>
+          <i class="fi fi-rr-trash trash-icon"></i>
+        </div>
+        <div class="note-card">
+          <p class="note-name">Things to ask the dude</p>
+          <p class="note-date">15 july 2022</p>
+          <i class="fi fi-rr-trash trash-icon"></i>
+        </div>
+        <div class="note-card">
+          <p class="note-name">
+            Things to ask the dude Things to ask the dude Things to ask the dude
+            Things to ask the dude
+          </p>
+          <p class="note-date">15 july 2022</p>
+          <i class="fi fi-rr-trash trash-icon"></i>
+        </div> -->
+        <div class="no-notes">
+          <i class="fi fi-rr-document-signed"></i>
+          <p>No notes yet :(</p>
+        </div>
+      </section>
+
       <!-- add note popup -->
       <div class="form-container move-up invisible">
         <p>Add note</p>
@@ -131,14 +160,8 @@
           <input type="submit" value="Add" />
         </form>
       </div>
-
-      <section class="note-container"></section>
-
-      <!-- add note btn -->
-      <i class="fi fi-rr-add add-note-btn"></i>
     </main>
-
-    <!-- overlay -->
-    <!-- <div class="overlay no-display"></div> -->
+    <!-- add note btn -->
+    <i class="fi fi-rr-add add-note-btn"></i>
   </body>
 </html>
