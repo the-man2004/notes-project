@@ -35,14 +35,12 @@ const noNotes = document.querySelector(".no-notes");
 ///////////////////////////
 // global variables
 
-let storageName = noteSelector.textContent
+const storageName = "all-notes";
+let curStorage = noteSelector.textContent
   .trim()
   .toLowerCase()
   .split(" ")
   .join("-");
-
-// let storage = JSON.parse(localStorage.getItem(storageName));
-// console.log(storage);
 
 let notes = [];
 
@@ -63,6 +61,10 @@ const addNote = function (title, note, id = Math.random()) {
     </div>
     `
   );
+};
+
+const renderAllNotes = function (arr) {
+  arr.forEach((note) => addNote(note.title, note.message, note.id));
 };
 
 const hideForm = function () {
@@ -152,9 +154,31 @@ noteContainer.addEventListener("click", function (e) {
       : (e.target.classList = "fi fi-rr-arrow-small-down arrow-down");
   }
 
+  // delete element when pressed
   if (e.target.classList.contains("trash-icon")) {
-    console.log("deleted");
-    localStorage.setItem(storageName, null);
+    // getting old notes
+    const oldNotes = JSON.parse(localStorage.getItem(storageName));
+
+    // filtering out deleted note
+    const newNotes = oldNotes.filter(
+      (note) => note.id !== +e.target.parentNode.id
+    );
+
+    // setting storage to new array
+    localStorage.setItem(storageName, JSON.stringify(newNotes));
+    notes = newNotes;
+
+    if (newNotes.length >= 1) {
+      noteContainer.innerHTML = "";
+      renderAllNotes(notes);
+    } else {
+      noteContainer.innerHTML = `
+      <div class="no-notes">
+        <i class="fi fi-rr-document-signed"></i>
+        <p>No notes yet :(</p>
+      </div>
+      `;
+    }
   }
 });
 
@@ -166,6 +190,10 @@ window.addEventListener("load", function () {
   const local = JSON.parse(localStorage.getItem(storageName));
   local === null ? (notes = []) : (notes = local);
 
-  notes.forEach((note) => addNote(note.title, note.message, note.id));
-  console.log(notes);
+  if (notes.length > 0) {
+    notes.forEach((note) => addNote(note.title, note.message, note.id));
+    console.log(notes);
+  } else {
+    noNotes.classList.toggle("invisible");
+  }
 });
