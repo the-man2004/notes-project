@@ -6,7 +6,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   align-items: center;
-  justify-items: space-between;
 
   background-color: var(--black);
   /* border-bottom: 2px solid var(--orange); */
@@ -139,4 +138,14 @@
   height: 5px;
   margin: 15px 0;
   background-color: var(--light-gray);
+}
+
+/* media query */
+@media only screen and (max-width: 550px) {
+  .note-selector {
+    font-size: 0.8em;
+  }
+  .note-count {
+    font-size: 0.6em;
+  }
 }
