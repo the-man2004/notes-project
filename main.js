@@ -48,7 +48,7 @@ let notes = [];
 /////////////////////////////
 // Helper functions
 
-const addNote = function (title, note, id = Math.random()) {
+const addNote = function (title, note, date, id = Math.random()) {
   noNotes.remove();
   noteContainer.insertAdjacentHTML(
     "afterbegin",
@@ -56,7 +56,7 @@ const addNote = function (title, note, id = Math.random()) {
     <div id="${id}" class="note-card">
       <p class="note-name">${title} <i class="fi fi-rr-arrow-small-down arrow-down"></i></p>
       <p class="note no-display">${note}</p>
-      <p class="note-date">${new Date().toDateString()}</p>
+      <p class="note-date">${date}</p>
       <i class="fi fi-rr-trash trash-icon"></i>
     </div>
     `
@@ -64,7 +64,7 @@ const addNote = function (title, note, id = Math.random()) {
 };
 
 const renderAllNotes = function (arr) {
-  arr.forEach((note) => addNote(note.title, note.message, note.id));
+  arr.forEach((note) => addNote(note.title, note.message, note.date, note.id));
 };
 
 const hideForm = function () {
@@ -129,14 +129,16 @@ addNoteBtn.addEventListener("click", function () {
 form.addEventListener("submit", function (e) {
   e.preventDefault();
   const random = Math.random();
+  const dateStr = `${new Date().toDateString()}`;
 
   notes.push({
     id: random,
     title: noteTitle.value,
     message: noteMessage.value,
+    date: dateStr,
   });
 
-  addNote(noteTitle.value, noteMessage.value, random);
+  addNote(noteTitle.value, noteMessage.value, dateStr, random);
   localStorage.setItem(storageName, JSON.stringify(notes));
 
   console.log(JSON.parse(localStorage.getItem(storageName)));
@@ -191,7 +193,9 @@ window.addEventListener("load", function () {
   local === null ? (notes = []) : (notes = local);
 
   if (notes.length > 0) {
-    notes.forEach((note) => addNote(note.title, note.message, note.id));
+    notes.forEach((note) =>
+      addNote(note.title, note.message, note.date, note.id)
+    );
     console.log(notes);
   } else {
     noNotes.classList.toggle("invisible");
