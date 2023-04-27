@@ -14,14 +14,15 @@
       href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
     />
 
-    <title>Notes</title>
+    <title>Notes app</title>
   </head>
   <body>
     <nav class="navbar">
       <div class="note-selection orange">
-        <p class="note-selector">
-          All notes <i id="carret-icon" class="fi fi-rr-caret-down"></i>
-        </p>
+        <div class="note-selector-container">
+          <p class="note-selector">All notes</p>
+          <i id="carret-icon" class="fi fi-rr-caret-down"></i>
+        </div>
         <p class="note-count">0 notes</p>
       </div>
 
@@ -58,58 +59,70 @@
       <!-- note selector -->
       <div class="note-popup no-display">
         <ul>
-          <li>
-            <i class="fi fi-rr-memo note-icons"></i>
+          <li style="color: gray">
+            <i style="color: gray" class="fi fi-rr-memo note-icons"></i>
             <div class="notes">
-              <p class="all-notes note-link">All notes</p>
+              <p class="note-link">All notes</p>
               <p>0</p>
             </div>
           </li>
           <hr />
-          <li>
-            <i class="fi fi-rr-star note-icons"></i>
+          <li style="color: goldenrod">
+            <i style="color: goldenrod" class="fi fi-rr-star note-icons"></i>
             <div class="notes">
-              <p class="favorite-notes note-link">My favorites</p>
+              <p class="note-link">My favorites</p>
               <p>0</p>
             </div>
           </li>
           <hr />
-          <li>
-            <i class="fi fi-rr-trash note-icons"></i>
+          <li style="color: darkred">
+            <i style="color: darkred" class="fi fi-rr-trash note-icons"></i>
             <div class="notes">
-              <p class="deleted-notes note-link">Recently deleted</p>
+              <p class="note-link">Recently deleted</p>
               <p>0</p>
             </div>
           </li>
           <div class="divider"></div>
-          <li>
-            <i class="fi fi-rr-document-signed note-icons"></i>
+          <li style="color: #00beef">
+            <i
+              style="color: #00beef"
+              class="fi fi-rr-document-signed note-icons"
+            ></i>
             <div class="notes">
-              <p class="travel-notes note-link">Travel</p>
+              <p class="note-link">Travel</p>
               <p>0</p>
             </div>
           </li>
           <hr />
-          <li>
-            <i class="fi fi-rr-document-signed note-icons"></i>
+          <li style="color: greenyellow">
+            <i
+              style="color: greenyellow"
+              class="fi fi-rr-document-signed note-icons"
+            ></i>
             <div class="notes">
-              <p class="travel-notes note-link">Personal</p>
+              <p class="note-link">Personal</p>
               <p>0</p>
             </div>
           </li>
           <hr />
-          <li>
-            <i class="fi fi-rr-document-signed note-icons"></i>
+          <li style="color: darkmagenta">
+            <i
+              style="color: darkmagenta"
+              class="fi fi-rr-document-signed note-icons"
+            ></i>
             <div class="notes">
-              <p class="travel-notes note-link">Life</p>
+              <p class="note-link">Life</p>
               <p>0</p>
             </div>
           </li>
           <hr />
-          <li>
-            <i class="fi fi-rr-document-signed note-icons"></i>
+          <li style="color: orangered">
+            <i
+              style="color: orangered"
+              class="fi fi-rr-document-signed note-icons"
+            ></i>
             <div class="notes">
-              <p class="travel-notes note-link">Work</p>
+              <p class="note-link">Work</p>
               <p>0</p>
             </div>
           </li>
@@ -121,24 +134,6 @@
     <main>
       <!-- note container -->
       <section class="note-container">
-        <!-- <div class="note-card">
-          <p class="note-name">Things to ask the dude</p>
-          <p class="note-date">15 july 2022</p>
-          <i class="fi fi-rr-trash trash-icon"></i>
-        </div>
-        <div class="note-card">
-          <p class="note-name">Things to ask the dude</p>
-          <p class="note-date">15 july 2022</p>
-          <i class="fi fi-rr-trash trash-icon"></i>
-        </div>
-        <div class="note-card">
-          <p class="note-name">
-            Things to ask the dude Things to ask the dude Things to ask the dude
-            Things to ask the dude
-          </p>
-          <p class="note-date">15 july 2022</p>
-          <i class="fi fi-rr-trash trash-icon"></i>
-        </div> -->
         <div class="no-notes invisible">
           <i class="fi fi-rr-document-signed"></i>
           <p>No notes yet :(</p>
