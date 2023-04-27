@@ -173,3 +173,43 @@ textarea {
   color: var(--light-gray);
   font-size: 2rem;
 }
+
+/* media query */
+@media only screen and (max-width: 800px) {
+  .note-card {
+    width: 90vw;
+  }
+
+  /* popup styling */
+  .form-container {
+    width: 90vw;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  /* .note-container {
+    padding: 0px 20px;
+  } */
+
+  /* note styling */
+  .note-card {
+    padding: 10px 10px 50px 10px;
+    width: calc(90vw - 10px);
+  }
+  .note-name {
+    font-size: 1.1em;
+  }
+  .note {
+    font-size: 0.9em;
+  }
+  .note-date {
+    font-size: 0.8em;
+  }
+
+  .trash-icon {
+    font-size: 0.8em;
+  }
+  .add-note-btn {
+    font-size: 2em;
+  }
+}
