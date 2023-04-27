@@ -7,6 +7,7 @@ const navbar = document.querySelector(".navbar");
 
 // note elements
 const noteSelector = document.querySelector(".note-selector");
+const noteCount = document.querySelector(".note-count");
 const notePopup = document.querySelector(".note-popup");
 const caretIcon = document.getElementById("carret-icon");
 
@@ -48,12 +49,12 @@ let notes = [];
 /////////////////////////////
 // Helper functions
 
-const addNote = function (title, note, date, id = Math.random()) {
+const addNote = function (title, note, date, type, id = Math.random()) {
   noNotes.remove();
   noteContainer.insertAdjacentHTML(
     "afterbegin",
     `
-    <div id="${id}" class="note-card">
+    <div id="${id}" class="note-card ${type}">
       <p class="note-name">${title} <i class="fi fi-rr-arrow-small-down arrow-down"></i></p>
       <p class="note no-display">${note}</p>
       <p class="note-date">${date}</p>
@@ -64,7 +65,30 @@ const addNote = function (title, note, date, id = Math.random()) {
 };
 
 const renderAllNotes = function (arr) {
-  arr.forEach((note) => addNote(note.title, note.message, note.date, note.id));
+  const array = arr.filter((note) => note.type !== "recently-deleted");
+
+  noteContainer.innerHTML = "";
+  array.forEach((note) =>
+    addNote(note.title, note.message, note.date, note.type, note.id)
+  );
+};
+
+const renderSpecificNotes = function (type) {
+  const newNotes = notes.filter((note) => note.type === type);
+
+  noteContainer.innerHTML = "";
+  if (newNotes.length > 0) {
+    newNotes.forEach((note) =>
+      addNote(note.title, note.message, note.date, note.type, note.id)
+    );
+  } else {
+    noteContainer.innerHTML = `
+      <div class="no-notes">
+        <i class="fi fi-rr-document-signed"></i>
+        <p>No notes yet :)</p>
+      </div>
+    `;
+  }
 };
 
 const hideForm = function () {
@@ -81,6 +105,10 @@ const hideForm = function () {
 const hideCancelBtn = function () {
   cancelBtn.classList.add("invisible");
   searchBar.value = "";
+};
+
+const SetNoteCount = function () {
+  noteCount.textContent = `${notes.length} notes`;
 };
 
 /////////////////////////////
@@ -137,6 +165,27 @@ searchBtn.addEventListener("click", function () {
   }
 });
 
+notePopup.addEventListener("click", function (e) {
+  if (e.target.classList.contains("note-link")) {
+    console.log(e.target.textContent);
+    noteSelector.textContent = e.target.textContent;
+
+    curStorage = noteSelector.textContent
+      .trim()
+      .toLowerCase()
+      .split(" ")
+      .join("-");
+
+    notePopup.classList.toggle("no-display");
+
+    if (curStorage === "all-notes") {
+      renderAllNotes(notes);
+    } else {
+      renderSpecificNotes(curStorage);
+    }
+  }
+});
+
 cancelBtn.addEventListener("click", hideCancelBtn);
 
 addNoteBtn.addEventListener("click", function () {
@@ -153,12 +202,28 @@ form.addEventListener("submit", function (e) {
     title: noteTitle.value,
     message: noteMessage.value,
     date: dateStr,
+    type: curStorage,
   });
 
-  addNote(noteTitle.value, noteMessage.value, dateStr, random);
+  // check if note container has no-notes
+  if (
+    (noteContainer.innerHTML = `
+  <div class="no-notes">
+    <i class="fi fi-rr-document-signed"></i>
+    <p>No notes yet :(</p>
+  </div>
+  `)
+  ) {
+    noteContainer.innerHTML = "";
+  }
+
+  addNote(noteTitle.value, noteMessage.value, dateStr, curStorage, random);
   localStorage.setItem(storageName, JSON.stringify(notes));
 
   console.log(JSON.parse(localStorage.getItem(storageName)));
+
+  // setting note count
+  SetNoteCount();
 
   hideForm();
 });
@@ -189,7 +254,7 @@ noteContainer.addEventListener("click", function (e) {
 
     if (newNotes.length >= 1) {
       noteContainer.innerHTML = "";
-      renderAllNotes(notes);
+      renderSpecificNotes(curStorage);
     } else {
       noteContainer.innerHTML = `
       <div class="no-notes">
@@ -199,6 +264,8 @@ noteContainer.addEventListener("click", function (e) {
       `;
     }
   }
+  // setting note count
+  SetNoteCount();
 });
 
 overlay.addEventListener("click", function () {
@@ -206,8 +273,12 @@ overlay.addEventListener("click", function () {
 });
 
 window.addEventListener("load", function () {
+  // assigning notes to = localeStorage
   const local = JSON.parse(localStorage.getItem(storageName));
   local === null ? (notes = []) : (notes = local);
+
+  // setting note count
+  SetNoteCount();
 
   if (notes.length > 0) {
     renderAllNotes(notes);
