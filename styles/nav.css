@@ -104,7 +104,7 @@
   left: 20px;
   padding: 20px;
   width: 40vw;
-  min-width: 300px;
+  max-width: 600px;
 
   border-radius: 10px;
 }
@@ -147,5 +147,16 @@
   }
   .note-count {
     font-size: 0.6em;
+  }
+
+  .note-popup {
+    left: 20px;
+    width: 70vw;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .burger-popup {
+    left: 20px;
   }
 }
