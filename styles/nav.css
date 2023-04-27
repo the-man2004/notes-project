@@ -18,6 +18,7 @@
 /* note selector */
 .note-selector {
   font-size: 1.3rem;
+  padding-right: 5px;
 }
 .note-selector:hover {
   cursor: pointer;
@@ -138,6 +139,10 @@
   height: 5px;
   margin: 15px 0;
   background-color: var(--light-gray);
+}
+
+.note-selector-container {
+  display: flex;
 }
 
 /* media query */
