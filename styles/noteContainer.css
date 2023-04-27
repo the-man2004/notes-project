@@ -111,11 +111,11 @@ textarea {
   padding: 15px 15px 50px 15px;
   margin: 30px 0;
 
-  border: 2px solid var(--light-gray);
+  /* border: 2px solid var(--light-gray); */
   border-radius: 10px;
 
-  background-color: var(--black);
   color: var(--light-gray);
+  background-color: var(--black);
 }
 .note-card:hover {
   cursor: pointer;
@@ -174,6 +174,30 @@ textarea {
   font-size: 2rem;
 }
 
+/* note types */
+.all-notes {
+  border: 2px solid var(--light-gray);
+}
+.my-favorites {
+  border: 2px solid goldenrod;
+}
+.recently-deleted {
+  border: 2px solid darkred;
+}
+.travel {
+  border: 2px solid #00beef;
+}
+.personal {
+  border: 2px solid greenyellow;
+}
+.life {
+  border: 2px solid darkmagenta;
+}
+.work {
+  border: 2px solid var(--orange);
+}
+
+/* ///////////////////// */
 /* media query */
 @media only screen and (max-width: 800px) {
   .note-card {
