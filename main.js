@@ -115,9 +115,26 @@ searchBar.addEventListener("keyup", function () {
 });
 
 searchBtn.addEventListener("click", function () {
+  // if there is nothing to search
   if (!searchBar.value) return;
 
-  console.log("search");
+  const searchResult = notes.filter(
+    (note) => note.title.toLowerCase() === searchBar.value.toLowerCase()
+  );
+
+  if (searchResult.length > 0) {
+    noteContainer.innerHTML = "";
+    searchResult.forEach((res) =>
+      addNote(res.title, res.message, res.date, res.id)
+    );
+  } else {
+    noteContainer.innerHTML = `
+    <div class="no-notes">
+      <i class="fi fi-rr-document-signed"></i>
+      <p>No notes with that name :(</p>
+    </div>
+    `;
+  }
 });
 
 cancelBtn.addEventListener("click", hideCancelBtn);
@@ -193,9 +210,7 @@ window.addEventListener("load", function () {
   local === null ? (notes = []) : (notes = local);
 
   if (notes.length > 0) {
-    notes.forEach((note) =>
-      addNote(note.title, note.message, note.date, note.id)
-    );
+    renderAllNotes(notes);
     console.log(notes);
   } else {
     noNotes.classList.toggle("invisible");
