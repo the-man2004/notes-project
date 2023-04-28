@@ -153,7 +153,7 @@ searchBtn.addEventListener("click", function () {
   if (searchResult.length > 0) {
     noteContainer.innerHTML = "";
     searchResult.forEach((res) =>
-      addNote(res.title, res.message, res.date, res.id)
+      addNote(res.title, res.message, res.date, res.type, res.id)
     );
   } else {
     noteContainer.innerHTML = `
@@ -186,7 +186,15 @@ notePopup.addEventListener("click", function (e) {
   }
 });
 
-cancelBtn.addEventListener("click", hideCancelBtn);
+cancelBtn.addEventListener("click", function () {
+  hideCancelBtn();
+
+  if (curStorage === "all-notes") {
+    renderAllNotes(curStorage);
+  } else {
+    renderSpecificNotes(curStorage);
+  }
+});
 
 addNoteBtn.addEventListener("click", function () {
   hideForm();
