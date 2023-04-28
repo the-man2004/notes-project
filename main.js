@@ -208,16 +208,17 @@ form.addEventListener("submit", function (e) {
   // check if note container has no-notes
   if (
     (noteContainer.innerHTML = `
-  <div class="no-notes">
-    <i class="fi fi-rr-document-signed"></i>
-    <p>No notes yet :(</p>
-  </div>
-  `)
+      <div class="no-notes">
+        <i class="fi fi-rr-document-signed"></i>
+        <p>No notes yet :(</p>
+      </div>
+    `)
   ) {
     noteContainer.innerHTML = "";
   }
 
-  addNote(noteTitle.value, noteMessage.value, dateStr, curStorage, random);
+  // addNote(noteTitle.value, noteMessage.value, dateStr, curStorage, random);
+  renderSpecificNotes(curStorage);
   localStorage.setItem(storageName, JSON.stringify(notes));
 
   console.log(JSON.parse(localStorage.getItem(storageName)));
