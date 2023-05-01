@@ -11,6 +11,8 @@ const noteCount = document.querySelector(".note-count");
 const notePopup = document.querySelector(".note-popup");
 const caretIcon = document.getElementById("carret-icon");
 
+const numNotes = document.querySelectorAll(".num-notes");
+
 // Add note btn
 const addNoteBtn = document.querySelector(".add-note-btn");
 
@@ -49,7 +51,7 @@ let notes = [];
 /////////////////////////////
 // Helper functions
 
-const addNote = function (title, note, date, type, id = Math.random()) {
+const addNote = function (title, note, date, type, id) {
   noNotes.remove();
   noteContainer.insertAdjacentHTML(
     "afterbegin",
@@ -109,6 +111,26 @@ const hideCancelBtn = function () {
 
 const SetNoteCount = function () {
   noteCount.textContent = `${notes.length} notes`;
+};
+
+// Set number of notes in notePopup
+const numberOfNotes = function (type) {
+  const note = notes.filter((note) => note.type === type);
+  return note.length;
+};
+
+const setNumNotes = function () {
+  const arr = [
+    "all-notes",
+    "my-favorites",
+    "recently-deleted",
+    "travel",
+    "personal",
+    "life",
+    "work",
+  ];
+
+  numNotes.forEach((note, i) => (note.textContent = numberOfNotes(arr[i])));
 };
 
 /////////////////////////////
@@ -179,8 +201,13 @@ notePopup.addEventListener("click", function (e) {
     notePopup.classList.toggle("no-display");
 
     if (curStorage === "all-notes") {
+      addNoteBtn.classList.remove("no-display");
       renderAllNotes(notes);
+    } else if (curStorage === "recently-deleted") {
+      addNoteBtn.classList.add("no-display");
+      renderSpecificNotes(curStorage);
     } else {
+      addNoteBtn.classList.remove("no-display");
       renderSpecificNotes(curStorage);
     }
   }
@@ -213,26 +240,22 @@ form.addEventListener("submit", function (e) {
     type: curStorage,
   });
 
-  // check if note container has no-notes
-  if (
-    (noteContainer.innerHTML = `
-      <div class="no-notes">
-        <i class="fi fi-rr-document-signed"></i>
-        <p>No notes yet :(</p>
-      </div>
-    `)
-  ) {
+  // Check if noteContainer has no-notes div
+  if (noteContainer.firstElementChild.classList.contains("no-notes")) {
     noteContainer.innerHTML = "";
   }
 
-  // addNote(noteTitle.value, noteMessage.value, dateStr, curStorage, random);
-  renderSpecificNotes(curStorage);
+  addNote(noteTitle.value, noteMessage.value, dateStr, curStorage, random);
+  // renderSpecificNotes(curStorage);
   localStorage.setItem(storageName, JSON.stringify(notes));
 
   console.log(JSON.parse(localStorage.getItem(storageName)));
 
   // setting note count
   SetNoteCount();
+
+  // setting number of notes in note popup
+  setNumNotes();
 
   hideForm();
 });
@@ -248,33 +271,60 @@ noteContainer.addEventListener("click", function (e) {
   }
 
   // delete element when pressed
+  // if (e.target.classList.contains("trash-icon")) {
+  //   // getting old notes
+  //   const oldNotes = JSON.parse(localStorage.getItem(storageName));
+
+  //   // filtering out deleted note
+  //   const newNotes = oldNotes.filter(
+  //     (note) => note.id !== +e.target.parentNode.id
+  //   );
+
+  //   // setting storage to new array
+  //   localStorage.setItem(storageName, JSON.stringify(newNotes));
+  //   notes = newNotes;
+
+  //   if (newNotes.length >= 1) {
+  //     noteContainer.innerHTML = "";
+  //     // renderSpecificNotes(curStorage);
+  //     curStorage === "all-notes"
+  //       ? renderAllNotes(notes)
+  //       : renderSpecificNotes(curStorage);
+  //   } else {
+  //     noteContainer.innerHTML = `
+  //     <div class="no-notes">
+  //       <i class="fi fi-rr-document-signed"></i>
+  //       <p>No notes yet :(</p>
+  //     </div>
+  //     `;
+  //   }
+  // }
+
+  // delete element when pressed
   if (e.target.classList.contains("trash-icon")) {
-    // getting old notes
-    const oldNotes = JSON.parse(localStorage.getItem(storageName));
+    const target = e.target.closest(".note-card").id;
+    console.log(target);
 
-    // filtering out deleted note
-    const newNotes = oldNotes.filter(
-      (note) => note.id !== +e.target.parentNode.id
-    );
+    // const newNotes = notes.map();
+    let newArr = [];
 
-    // setting storage to new array
-    localStorage.setItem(storageName, JSON.stringify(newNotes));
-    notes = newNotes;
+    for (let i = 0; i < notes.length; i++) {
+      newArr.push(notes[i]);
 
-    if (newNotes.length >= 1) {
-      noteContainer.innerHTML = "";
-      renderSpecificNotes(curStorage);
-    } else {
-      noteContainer.innerHTML = `
-      <div class="no-notes">
-        <i class="fi fi-rr-document-signed"></i>
-        <p>No notes yet :(</p>
-      </div>
-      `;
+      if ((newArr[i].id = +target)) {
+        // newArr[i].type = "recently-deleted";
+        newArr[i].type = "shit";
+      }
     }
+
+    console.log(newArr);
   }
+
   // setting note count
   SetNoteCount();
+
+  // setting number of notes in note popup
+  setNumNotes();
 });
 
 overlay.addEventListener("click", function () {
@@ -295,4 +345,9 @@ window.addEventListener("load", function () {
   } else {
     noNotes.classList.toggle("invisible");
   }
+
+  // setting number of notes in note popup
+  setNumNotes();
 });
+
+console.log(numNotes);
