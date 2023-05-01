@@ -109,7 +109,7 @@ const hideCancelBtn = function () {
   searchBar.value = "";
 };
 
-const SetNoteCount = function () {
+const setNoteCount = function () {
   noteCount.textContent = `${notes.length} notes`;
 };
 
@@ -252,7 +252,7 @@ form.addEventListener("submit", function (e) {
   console.log(JSON.parse(localStorage.getItem(storageName)));
 
   // setting note count
-  SetNoteCount();
+  setNoteCount();
 
   // setting number of notes in note popup
   setNumNotes();
@@ -271,57 +271,46 @@ noteContainer.addEventListener("click", function (e) {
   }
 
   // delete element when pressed
-  // if (e.target.classList.contains("trash-icon")) {
-  //   // getting old notes
-  //   const oldNotes = JSON.parse(localStorage.getItem(storageName));
-
-  //   // filtering out deleted note
-  //   const newNotes = oldNotes.filter(
-  //     (note) => note.id !== +e.target.parentNode.id
-  //   );
-
-  //   // setting storage to new array
-  //   localStorage.setItem(storageName, JSON.stringify(newNotes));
-  //   notes = newNotes;
-
-  //   if (newNotes.length >= 1) {
-  //     noteContainer.innerHTML = "";
-  //     // renderSpecificNotes(curStorage);
-  //     curStorage === "all-notes"
-  //       ? renderAllNotes(notes)
-  //       : renderSpecificNotes(curStorage);
-  //   } else {
-  //     noteContainer.innerHTML = `
-  //     <div class="no-notes">
-  //       <i class="fi fi-rr-document-signed"></i>
-  //       <p>No notes yet :(</p>
-  //     </div>
-  //     `;
-  //   }
-  // }
-
-  // delete element when pressed
   if (e.target.classList.contains("trash-icon")) {
     const target = e.target.closest(".note-card").id;
     console.log(target);
 
-    // const newNotes = notes.map();
     let newArr = [];
 
-    for (let i = 0; i < notes.length; i++) {
-      newArr.push(notes[i]);
+    if (curStorage === "recently-deleted") {
+      newArr = notes.filter((note) => note.id !== +target);
+      notes = newArr;
 
-      if ((newArr[i].id = +target)) {
-        // newArr[i].type = "recently-deleted";
-        newArr[i].type = "shit";
+      renderSpecificNotes(curStorage);
+      localStorage.setItem(storageName, JSON.stringify(notes));
+    } else {
+      for (let i = 0; i < notes.length; i++) {
+        newArr.push(notes[i]);
+
+        if (newArr[i].id === +target) {
+          newArr[i].type = "recently-deleted";
+          notes = newArr;
+
+          if (curStorage === "all-notes") {
+            renderAllNotes(notes);
+          } else {
+            renderSpecificNotes(curStorage);
+          }
+
+          localStorage.setItem(storageName, JSON.stringify(notes));
+        }
       }
     }
+
+    setNoteCount();
+
+    setNumNotes();
 
     console.log(newArr);
   }
 
   // setting note count
-  SetNoteCount();
+  setNoteCount();
 
   // setting number of notes in note popup
   setNumNotes();
@@ -337,7 +326,7 @@ window.addEventListener("load", function () {
   local === null ? (notes = []) : (notes = local);
 
   // setting note count
-  SetNoteCount();
+  setNoteCount();
 
   if (notes.length > 0) {
     renderAllNotes(notes);
